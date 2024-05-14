@@ -11,11 +11,9 @@ const display = (number, count) => {
 
 const maxDigit = (number) => {
     if (number < 10) return number;
-    else {
-        const lastDigit = number % 10;
-        const maxDigitInRest = maxDigit(Math.floor(number / 10))
-        return Math.max(lastDigit, maxDigitInRest)
-    }
+    const lastDigit = number % 10;
+    const maxDigitInRest = maxDigit(Math.floor(number / 10))
+    return Math.max(lastDigit, maxDigitInRest)
 }
 
 const numberOfMaxDigit = (n, max) => {

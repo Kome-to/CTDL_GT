@@ -5,15 +5,12 @@ let input = ""; process.stdin.on("data", function (chunk) { input += chunk; }); 
 
 // -----------------------CODE-----------------------
 
-const display = (number, maxDigit) => {
-    console.log(`${number}: ${maxDigit}`);
-}
 
-const maxDigit = (number) => {
-    if (number < 10) return number;
-    const lastDigit = number % 10;
-    const maxDigitInRest = maxDigit(Math.floor(number / 10))
-    return Math.max(lastDigit, maxDigitInRest)
+const decToBin = (dec, result = '') => {
+    if (dec < 2) return `${dec}${result}`;
+    const qu = Math.floor(dec / 2);
+    const re = dec % 2;
+    return decToBin(qu, `${re}${result}`)
 }
 
 const main = () => {
@@ -21,7 +18,7 @@ const main = () => {
     const [n, ...numbers] = array;
     for (let i = 0; i < n; i++) {
         const number = numbers[i];
-        const max = maxDigit(number);
-        display(number, max);
+        const result = decToBin(number);
+        console.log(result);
     }
 }

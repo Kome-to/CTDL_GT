@@ -5,23 +5,19 @@ let input = ""; process.stdin.on("data", function (chunk) { input += chunk; }); 
 
 // -----------------------CODE-----------------------
 
-const display = (number, maxDigit) => {
-    console.log(`${number}: ${maxDigit}`);
+const funcTwo = (n, result = 0) => {
+    if (n === 1) return Math.sqrt(1 + result);
+    const newResult = Math.sqrt(n + result)
+    return funcTwo(n - 1, newResult);
 }
 
-const maxDigit = (number) => {
-    if (number < 10) return number;
-    const lastDigit = number % 10;
-    const maxDigitInRest = maxDigit(Math.floor(number / 10))
-    return Math.max(lastDigit, maxDigitInRest)
-}
 
 const main = () => {
     const array = input.trim().split('\n');
     const [n, ...numbers] = array;
     for (let i = 0; i < n; i++) {
         const number = numbers[i];
-        const max = maxDigit(number);
-        display(number, max);
+        const value = funcTwo(Number(number));
+        console.log(value.toFixed(10));
     }
 }
